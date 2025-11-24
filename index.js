@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import studentRouter from './routes/studentRouter.js';
 import itemRouter from './routes/itemRouter.js';
+import userRouter from './routes/userRouter.js';
 
 let app = express();
 mongoose.connect("mongodb+srv://admin:123@cluster0.eejpecu.mongodb.net/?appName=Cluster0").then(() => {
