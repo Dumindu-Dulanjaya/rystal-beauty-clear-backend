@@ -16,8 +16,8 @@ mongoose.connect("mongodb+srv://admin:123@cluster0.eejpecu.mongodb.net/?appName=
 //mongodb+srv://admin:123@cluster0.eejpecu.mongodb.net/?appName=Cluster0
 app.use(bodyParser.json());
 
-app.use("/students", studentRouter);
-app.use("/items", itemRouter);
+app.use("/api/students", studentRouter);
+app.use("/api/items", itemRouter);
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000");
