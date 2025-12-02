@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllItems, saveItem, getGoodItems ,searchItems} from './controllers/itemController.js';
+import { getAllItems, saveItem, getGoodItems, searchItems } from '../controllers/itemController.js';
 
 const itemRouter = express.Router();
 

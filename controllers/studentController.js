@@ -1,4 +1,4 @@
-import Student from "../../models/student.js";
+import Student from "../models/student.js";
 
 export function getAllStudents(req, res) {
     Student.find().then((students) => {
