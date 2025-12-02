@@ -26,7 +26,20 @@ export function loginUser(req, res) {
     User.findOne({
         email: email
     }).then((user) => {
-        console.log(user)
-    })
+        if (user == null) {
+            res.json({ message: "Invalid email" });
+        } else {
+            const isPasswordCorrect = bcrypt.compareSync(password, user.password);
+            if (isPasswordCorrect) {
+                res.json({ message: "Login successful" });
+            } else {
+                res.json({ message: "Invalid password" });
+            }
+        }
+    }).catch((error) => {
+        res.status(500).json({
+            message: "Login error",
+            error: error.message
+        });
+    });
 }
-
