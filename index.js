@@ -17,6 +17,7 @@ mongoose.connect("mongodb+srv://admin:123@cluster0.eejpecu.mongodb.net/crystalbe
 //mongodb+srv://admin:123@cluster0.eejpecu.mongodb.net/?appName=Cluster0
 app.use(bodyParser.json());
 
+
 app.use("/api/students", studentRouter);
 app.use("/api/items", itemRouter);
 app.use("/api/user", userRouter);
