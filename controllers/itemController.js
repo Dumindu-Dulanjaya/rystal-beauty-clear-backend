@@ -42,10 +42,20 @@ export function searchItems(req, res) {
 
 // Save new item
 export function saveItem(req, res) {
+    console.log("📥 Received item data:", req.body);
+    
     const item = new Item(req.body);
-    item.save().then(() => {
-        res.json({ message: "Item saved successfully" });
+    
+    console.log("💾 Attempting to save item:", item.name);
+    
+    item.save().then((savedItem) => {
+        console.log("✅ Item saved successfully:", savedItem.name);
+        res.json({ 
+            message: "Item saved successfully",
+            item: savedItem
+        });
     }).catch((error) => {
+        console.log("❌ Error saving item:", error.message);
         res.status(500).json({ 
             message: "Error saving item",
             error: error.message 
