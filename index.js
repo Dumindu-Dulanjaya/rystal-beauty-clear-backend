@@ -19,7 +19,11 @@ app.use(bodyParser.json());
 app.use(
     (req, res, next) => {
         const header = req.header("Authorization");
-        console.log(header);
+        if (header != null) {
+            const token = header.replace("Bearer ", "");
+            console.log(token);
+        }
+
 
 
         //next();
