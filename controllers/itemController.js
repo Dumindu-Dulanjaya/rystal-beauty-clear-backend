@@ -45,7 +45,7 @@ export function searchItems(req, res) {
 // Save new item
 export function saveItem(req, res) {
     console.log(req.user);
-    if (!req.user.role != 'admin') {
+    if (!req.user || req.user.role !== 'admin') {
         res.status(403).json({ message: "Access denied. Admins only." });
         return;
     }
