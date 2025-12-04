@@ -21,7 +21,7 @@ export function createProduct(req, res) {
             res.json({ message: "Product created successfully" });
 
         }).catch((err) => {
-            
+
             console.log(err);
             res.status(500).json({
                 message: "product not saved",
@@ -31,3 +31,4 @@ export function createProduct(req, res) {
 
 
     }
+    
