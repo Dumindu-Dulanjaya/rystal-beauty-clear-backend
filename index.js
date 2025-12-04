@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import userRouter from './routes/userRouter.js';
 import jwt from 'jsonwebtoken';
+import productRouter from './routes/productRouter.js';
 
 const app = express();
 mongoose.connect("mongodb+srv://admin:123@cluster0.eejpecu.mongodb.net/crystalbeauty?appName=Cluster0").then(() => {
@@ -36,6 +37,9 @@ app.use(
 )
 
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter);
+
+
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000");
