@@ -4,8 +4,9 @@ import mongoose from 'mongoose';
 import studentRouter from './routes/studentRouter.js';
 import itemRouter from './routes/itemRouter.js';
 import userRouter from './routes/userRouter.js';
+import jwt from 'jsonwebtoken';
 
-let app = express();
+const app = express();
 mongoose.connect("mongodb+srv://admin:123@cluster0.eejpecu.mongodb.net/crystalbeauty?appName=Cluster0").then(() => {
     console.log("Connected to the database: crystalbeauty");
     }
@@ -21,7 +22,9 @@ app.use(
         const header = req.header("Authorization");
         if (header != null) {
             const token = header.replace("Bearer ", "");
-            console.log(token);
+            jwt.verify(token, "random456", (err, decoded) => {
+            console.log(decoded);
+            });
         }
 
 
