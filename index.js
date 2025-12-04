@@ -24,12 +24,16 @@ app.use(
             const token = header.replace("Bearer ", "");
             jwt.verify(token, "random456", (err, decoded) => {
             console.log(decoded);
+
+            if(decoded!=null){
+                req.user= decoded; 
+            }
             });
         }
 
 
 
-        //next();
+        next();
     }
 )
 app.use("/api/students", studentRouter);

@@ -2,6 +2,8 @@ import Item from "../models/item.js";
 
 // Get all items
 export function getAllItems(req, res) {
+
+
     Item.find().then((items) => {
         res.json(items);
     }).catch((error) => {
@@ -42,6 +44,12 @@ export function searchItems(req, res) {
 
 // Save new item
 export function saveItem(req, res) {
+    console.log(req.user);
+    if (!req.user.role != 'admin') {
+        res.status(403).json({ message: "Access denied. Admins only." });
+        return;
+    }
+
     console.log("📥 Received item data:", req.body);
     
     const item = new Item(req.body);
