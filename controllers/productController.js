@@ -60,3 +60,28 @@ export function deleteProduct(req, res) {
         });
     });
 }
+
+export function updateProduct(req, res) {
+    if (req.user == null) {
+        res.status(403).json({
+            message: "you need to login first"
+        });
+        return;
+    }
+
+    if (req.user.role != 'admin') {
+        res.status(403).json({
+            message: "You are not authorized to update a product"
+        });
+        return;
+    }
+    product.findOneAndUpdate({
+        productId: req.params.productId
+    }, req.body).then(() => {
+        res.json({ message: "Product updated successfully" });
+    }).catch((err) => {
+        res.status(500).json({
+            message: "product not updated"
+        });
+    }); 
+}
