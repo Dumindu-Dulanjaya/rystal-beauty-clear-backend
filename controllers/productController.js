@@ -36,3 +36,27 @@ export function getProducts(req, res) {
         });
     });
 }
+
+export function deleteProduct(req, res) {
+    if (req.user == null) {
+        res.status(403).json({
+            message: "you need to login first"
+        });
+        return;
+    }
+    if (req.user.role != 'admin') {
+        res.status(403).json({
+            message: "You are not authorized to delete a product"
+        });
+        return;
+    }
+    Product.findByIdAndDelete({
+        productId: req.params.productId
+    }).then(() => {
+        res.json({ message: "Product deleted successfully" });
+    }).catch((err) => {
+        res.status(500).json({
+            message: "product not deleted"
+        });
+    });
+}
